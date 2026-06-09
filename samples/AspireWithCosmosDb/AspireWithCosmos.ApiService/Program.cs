@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddOpenApiDocument();
+builder.Services.AddOpenApi();
 
 builder.AddAzureCosmosClient("cosmos");
 builder.Services.AddSingleton<DatabaseBootstrapper>();
@@ -20,8 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseOpenApi();
-    app.UseSwaggerUi();
+    app.MapOpenApi();
 }
 
 app.UseExceptionHandler();

@@ -2,12 +2,14 @@
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var tododb = builder.AddAzureCosmosDB("cosmos").AddDatabase("tododb")
+var cosmos = builder.AddAzureCosmosDB("cosmos")
     // Remove the RunAsEmulator() line should you want to use a live instance during development
-    .RunAsEmulator(); 
+    .RunAsEmulator();
+
+cosmos.AddCosmosDatabase("tododb");
 
 var apiService = builder.AddProject<Projects.AspireWithCosmos_ApiService>("apiservice")
-    .WithReference(tododb);
+    .WithReference(cosmos);
 
 builder.AddProject<Projects.AspireWithCosmos_Web>("webfrontend")
     .WithExternalHttpEndpoints()
