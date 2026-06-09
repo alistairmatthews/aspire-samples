@@ -6,13 +6,15 @@ var cosmos = builder.AddAzureCosmosDB("cosmos")
     // Remove the RunAsEmulator() line should you want to use a live instance during development
     .RunAsEmulator();
 
-cosmos.AddCosmosDatabase("tododb");
+var tododb = cosmos.AddCosmosDatabase("tododb");
 
 var apiService = builder.AddProject<Projects.AspireWithCosmos_ApiService>("apiservice")
-    .WithReference(cosmos);
+    .WithReference(cosmos)
+    .WaitFor(tododb);
 
 builder.AddProject<Projects.AspireWithCosmos_Web>("webfrontend")
     .WithExternalHttpEndpoints()
-    .WithReference(apiService);
+    .WithReference(apiService)
+    .WaitFor(apiService);
 
 builder.Build().Run();
