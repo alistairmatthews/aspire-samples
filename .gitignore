@@ -61,6 +61,11 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# Aspire output directory
+aspire-output/
+**/.aspire/**
+**/dist/apphost/
+
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
@@ -222,6 +227,7 @@ publish/
 PublishScripts/
 
 # NuGet Packages
+.packages/*
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
@@ -425,9 +431,15 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea
 
 # azd
 **/*/.azure
 **/*/azure.yaml
 **/*/next-steps.md
 
+# Python virtual environment files
+**/.venv/*
+
+# tmp directory
+tmp/
