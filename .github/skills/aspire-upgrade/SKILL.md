@@ -67,6 +67,8 @@ Watch for renamed APIs when upgrading hosting integrations:
 
 Also check that fluent call chains are valid. For example, `RunAsEmulator()` should be called on the Cosmos DB account resource, not on a database resource.
 
+When a resource is passed to another project using the `WithReference()` method, use the `WaitFor()` method to ensure the resource is fully provisioned before it is referenced.
+
 ### 5. AppHost File Naming
 
 In Aspire 13.4, the convention is to name the AppHost entry point `AppHost.cs` rather than `Program.cs`. Rename if requested — the .NET SDK compiles all `.cs` files automatically so no other references need updating.
@@ -117,6 +119,10 @@ Update remaining NuGet packages to their latest stable versions:
 ### 10. Aspire using Hosting
 
 The `using Aspire.Hosting;` directive in the AppHost `Program.cs`/`AppHost.cs` can be removed if no longer needed — the Aspire SDK imports these namespaces automatically. Check whether it's still required after the upgrade.
+
+### 11. Check launch profiles for all projects
+
+Make sure the `launchSettings.json` files in all projects are updated to reflect any changes in endpoints, ports, or launch URLs.
 
 ## Verification
 
