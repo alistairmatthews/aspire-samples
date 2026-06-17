@@ -63,7 +63,7 @@ var webRazorPages = builder.AddProject<Projects.Keycloak_Web_RazorPages>("web-ra
     .WithEnvironment("Authentication__Schemes__OpenIdConnect__ClientId", webRazorPagesClientId)
     .WithEnvironment("Authentication__Schemes__OpenIdConnect__ClientSecret", webRazorPagesClientSecret);
 
-// Import the sample realm & inject the the values the realm import file requires via environment variables.
+// Import the sample realm & inject the values the realm import file requires via environment variables.
 keycloak.WithSampleRealmImport(keycloakRealmName, keycloakRealmDisplayName, [
     new("API_WEATHER", apiWeatherClientId, apiWeatherClientName, apiWeatherClientSecret, apiWeather),
     new("WEB_BLAZORSSR", webBlazorSsrClientId, webBlazorSsrClientName, webBlazorSSRClientSecret, webBlazorSsr),
